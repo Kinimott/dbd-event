@@ -67,6 +67,29 @@
       box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
     }
 
+.scroll-down-arrow {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+  background: red;
+  color: white;
+  font-size: 3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255,0,0,0.6);
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+
+.scroll-down-arrow:hover {
+  transform: scale(1.15);
+}
+
     @keyframes twinkle {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.9); }
@@ -1015,6 +1038,8 @@
   </style>
 </head>
 <body>
+    <div class="scroll-down-arrow" onclick="scrollToGame()">⬇</div>
+
   <!-- ========== BACKGROUND AUDIO ========== -->
   <audio id="bgAudio" loop>
     <source src="dbd.mp3" type="audio/mpeg">
@@ -2459,5 +2484,4 @@
     gameLoop();
   </script>
 </body>
-
 </html>
