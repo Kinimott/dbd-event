@@ -1,0 +1,2462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas Guitar Duo Background</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Georgia', serif;
+    }
+
+    /* ========== CHRISTMAS BACKGROUND CONTAINER ========== */
+    .christmas-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(180deg, #0a1628 0%, #1a3a5c 50%, #2d5a7b 100%);
+      overflow: hidden;
+    }
+
+    /* ========== SNOW GROUND ========== */
+    .snow-ground {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 45%;
+      background: linear-gradient(180deg, #e8f4fc 0%, #b8d4e8 100%);
+      border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+    }
+
+    /* ========== FALLING SNOW ========== */
+    .snowflake {
+      position: absolute;
+      color: white;
+      text-shadow: 0 0 5px rgba(255,255,255,0.8);
+      animation: fall linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) translateX(0); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.8; }
+      100% { transform: translateY(110vh) translateX(20px); opacity: 0; }
+    }
+
+    /* ========== TWINKLING LIGHTS ========== */
+    .light {
+      position: absolute;
+      width: 12px;
+      height: 18px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: twinkle ease-in-out infinite;
+      box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    .light.red { background: #ff3333; color: #ff3333; }
+    .light.green { background: #33ff33; color: #33ff33; }
+    .light.blue { background: #3333ff; color: #3333ff; }
+    .light.yellow { background: #ffff33; color: #ffff33; }
+    .light.pink { background: #ff33ff; color: #ff33ff; }
+    .light.cyan { background: #33ffff; color: #33ffff; }
+    .light.orange { background: #ff6633; color: #ff6633; }
+
+    .light-string {
+      position: absolute;
+      height: 3px;
+      background: #2a5a2a;
+    }
+
+    /* ========== CHRISTMAS TREE ========== */
+    .christmas-tree {
+      position: absolute;
+      bottom: 35%;
+      left: 3%;
+    }
+
+    .tree-layer {
+      width: 0;
+      height: 0;
+      border-left: solid transparent;
+      border-right: solid transparent;
+      border-bottom: solid;
+      position: absolute;
+    }
+
+    .tree-layer-1 {
+      border-left-width: 45px;
+      border-right-width: 45px;
+      border-bottom-width: 80px;
+      border-bottom-color: #1a4d2e;
+      left: 15px;
+      top: 0;
+    }
+
+    .tree-layer-2 {
+      border-left-width: 55px;
+      border-right-width: 55px;
+      border-bottom-width: 90px;
+      border-bottom-color: #155a28;
+      left: 5px;
+      top: 50px;
+    }
+
+    .tree-layer-3 {
+      border-left-width: 65px;
+      border-right-width: 65px;
+      border-bottom-width: 100px;
+      border-bottom-color: #0d4020;
+      left: -5px;
+      top: 110px;
+    }
+
+    .tree-trunk {
+      width: 30px;
+      height: 40px;
+      background: #4a3728;
+      position: absolute;
+      bottom: -40px;
+      left: 45px;
+    }
+
+    .tree-star {
+      position: absolute;
+      top: -25px;
+      left: 48px;
+      font-size: 30px;
+      color: #ffd700;
+      text-shadow: 0 0 15px #ffd700, 0 0 30px #ffd700;
+      animation: starGlow 1.5s ease-in-out infinite;
+    }
+
+    @keyframes starGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    .tree-ornament {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      box-shadow: 0 0 8px currentColor;
+      animation: ornamentGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes ornamentGlow {
+      0%, 100% { box-shadow: 0 0 8px currentColor; }
+      50% { box-shadow: 0 0 15px currentColor, 0 0 25px currentColor; }
+    }
+
+    /* ========== LOCKERS ========== */
+    .locker {
+      position: absolute;
+      width: 80px;
+      height: 220px;
+      background: linear-gradient(90deg, #8b2020 0%, #a52a2a 50%, #7a1a1a 100%);
+      border: 2px solid #5a1515;
+      bottom: 42%;
+    }
+
+    .locker::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: -5px;
+      width: 90px;
+      height: 20px;
+      background: #f0f8ff;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
+
+    .locker-vent {
+      width: 25px;
+      height: 8px;
+      background: #3a0a0a;
+      position: absolute;
+      border-radius: 2px;
+    }
+
+    .locker-1 { left: 26%; }
+    .locker-2 { left: 34%; }
+
+    /* ========== WREATH ========== */
+    .wreath {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border: 12px solid #1a5a2a;
+      border-radius: 50%;
+      left: 28%;
+      bottom: 52%;
+    }
+
+    .wreath-bow {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 15px solid #ff0000;
+    }
+
+    .wreath-berry {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #ff0000;
+      border-radius: 50%;
+      box-shadow: 0 0 5px #ff0000;
+    }
+
+    /* ========== GUITARISTS ========== */
+    .guitarist {
+      position: absolute;
+      bottom: 25%;
+    }
+
+    .guitarist-1 { left: 20%; }
+    .guitarist-2 { left: 33%; }
+
+    .guitarist-body { position: relative; }
+
+    .head {
+      width: 50px;
+      height: 60px;
+      background: #d4a574;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 15px;
+    }
+
+    .hair {
+      width: 50px;
+      height: 25px;
+      background: #3a2a1a;
+      border-radius: 50% 50% 0 0;
+      position: absolute;
+      top: -5px;
+      left: 15px;
+    }
+
+    .eye {
+      width: 6px;
+      height: 5px;
+      background: #2a1a0a;
+      border-radius: 50%;
+      position: absolute;
+      top: 20px;
+    }
+
+    .eye-left { left: 28px; }
+    .eye-right { left: 46px; }
+
+    .santa-hat {
+      position: absolute;
+      top: -35px;
+      left: 10px;
+      width: 0;
+      height: 0;
+      border-left: 35px solid transparent;
+      border-right: 35px solid transparent;
+      border-bottom: 45px solid #cc0000;
+    }
+
+    .santa-hat::before {
+      content: '';
+      position: absolute;
+      top: 35px;
+      left: -40px;
+      width: 80px;
+      height: 15px;
+      background: white;
+      border-radius: 10px;
+    }
+
+    .santa-hat::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .sweater {
+      width: 80px;
+      height: 100px;
+      background: #1a5a3a;
+      position: absolute;
+      top: 55px;
+      left: 0;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .sweater-stripe {
+      position: absolute;
+      width: 70px;
+      height: 4px;
+      background: #ffd700;
+      left: 5px;
+    }
+
+    .sweater-stripe-1 { top: 25px; }
+    .sweater-stripe-2 { top: 45px; }
+
+    .sweater-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #ff4444;
+      border-radius: 50%;
+    }
+
+    .legs {
+      position: absolute;
+      top: 150px;
+      left: 10px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .leg {
+      width: 22px;
+      height: 80px;
+      background: #1a1a2e;
+      border-radius: 5px;
+    }
+
+    .boot {
+      width: 28px;
+      height: 12px;
+      background: #0d0d15;
+      border-radius: 5px 5px 3px 3px;
+      position: absolute;
+      top: 150px;
+    }
+
+    .boot-left { left: 5px; }
+    .boot-right { left: 39px; }
+
+    .guitar {
+      position: absolute;
+      top: 80px;
+      left: -25px;
+      transform: rotate(-15deg);
+    }
+
+    .guitarist-2 .guitar {
+      left: 40px;
+      transform: rotate(15deg);
+    }
+
+    .guitar-body {
+      width: 70px;
+      height: 90px;
+      background: linear-gradient(135deg, #d4a574 0%, #c49464 50%, #a87d54 100%);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .guitar-hole {
+      width: 25px;
+      height: 30px;
+      background: #2a1a0a;
+      border-radius: 50%;
+      position: absolute;
+      top: 30px;
+      left: 22px;
+    }
+
+    .guitar-neck {
+      width: 12px;
+      height: 70px;
+      background: #5a4a3a;
+      position: absolute;
+      top: -60px;
+      left: 29px;
+    }
+
+    .guitar-head {
+      width: 30px;
+      height: 20px;
+      background: #5a4a3a;
+      border-radius: 10px 10px 0 0;
+      position: absolute;
+      top: -80px;
+      left: 20px;
+    }
+
+    .guitar-decoration {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 2px solid white;
+      border-radius: 50%;
+    }
+
+    /* ========== PRESENTS ========== */
+    .presents {
+      position: absolute;
+      bottom: 30%;
+      left: 50%;
+    }
+
+    .present { position: absolute; border-radius: 3px; }
+
+    .present-1 {
+      width: 50px;
+      height: 40px;
+      background: #ff4444;
+      left: 0;
+      top: 0;
+    }
+
+    .present-1::before {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 100%;
+      background: #ffd700;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .present-1::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 8px;
+      background: #ffd700;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .present-2 {
+      width: 40px;
+      height: 35px;
+      background: #4444ff;
+      left: 60px;
+      top: 5px;
+    }
+
+    .present-2::before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 100%;
+      background: silver;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .present-3 {
+      width: 35px;
+      height: 30px;
+      background: #44aa44;
+      left: 30px;
+      top: 35px;
+    }
+
+    .present-3::before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 100%;
+      background: #ff4444;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* ========== CANDY CANES ========== */
+    .candy-cane {
+      position: absolute;
+      bottom: 32%;
+      width: 12px;
+      height: 80px;
+      background: repeating-linear-gradient(
+        0deg,
+        white 0px,
+        white 12px,
+        #ff0000 12px,
+        #ff0000 24px
+      );
+      border-radius: 6px 6px 0 0;
+    }
+
+    .candy-cane-1 { left: 60%; }
+    .candy-cane-2 { left: 64%; height: 65px; }
+
+    /* ========== SNOWMAN ========== */
+    .snowman {
+      position: absolute;
+      bottom: 28%;
+      right: 8%;
+    }
+
+    .snowman-body { position: relative; }
+
+    .snowball {
+      background: #f0f8ff;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .snowball-bottom { width: 70px; height: 60px; bottom: 0; left: 5px; }
+    .snowball-middle { width: 55px; height: 50px; bottom: 50px; left: 12px; }
+    .snowball-top { width: 45px; height: 40px; bottom: 90px; left: 17px; }
+
+    .snowman-eye {
+      width: 5px;
+      height: 5px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .snowman-eye-left { bottom: 115px; left: 28px; }
+    .snowman-eye-right { bottom: 115px; left: 45px; }
+
+    .snowman-nose {
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 15px solid #ff6600;
+      position: absolute;
+      bottom: 105px;
+      left: 42px;
+    }
+
+    .snowman-hat {
+      position: absolute;
+      bottom: 130px;
+      left: 20px;
+    }
+
+    .hat-brim { width: 45px; height: 6px; background: #1a1a1a; }
+    .hat-top { width: 30px; height: 35px; background: #1a1a1a; margin-left: 7px; margin-top: -35px; }
+    .hat-band { width: 30px; height: 6px; background: #ff0000; position: absolute; top: -22px; left: 7px; }
+
+    .snowman-scarf {
+      width: 60px;
+      height: 10px;
+      background: #ff0000;
+      border-radius: 5px;
+      position: absolute;
+      bottom: 85px;
+      left: 10px;
+    }
+
+    .snowman-scarf::after {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: 8px;
+      width: 12px;
+      height: 30px;
+      background: #ff0000;
+      border-radius: 3px;
+    }
+
+    .snowman-button {
+      width: 6px;
+      height: 6px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      position: absolute;
+      left: 37px;
+    }
+
+    .button-1 { bottom: 68px; }
+    .button-2 { bottom: 52px; }
+    .button-3 { bottom: 36px; }
+
+    .snowman-arm {
+      width: 40px;
+      height: 5px;
+      background: #5a4030;
+      position: absolute;
+      bottom: 65px;
+    }
+
+    .arm-left { left: -25px; transform: rotate(-30deg); }
+    .arm-right { right: -25px; transform: rotate(30deg); }
+
+    /* ========== MUSIC NOTES ========== */
+    .music-note {
+      position: absolute;
+      font-size: 24px;
+      color: #ffd700;
+      text-shadow: 0 0 10px #ffd700;
+      animation: floatNote 3s ease-in-out infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatNote {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+    }
+
+    .note-1 { left: 18%; bottom: 58%; animation-delay: 0s; }
+    .note-2 { left: 30%; bottom: 62%; animation-delay: 0.5s; }
+    .note-3 { left: 43%; bottom: 58%; animation-delay: 1s; }
+    .note-4 { left: 13%; bottom: 52%; animation-delay: 1.5s; }
+
+    /* ========== MERRY CHRISTMAS TEXT ========== */
+    .merry-christmas {
+      position: absolute;
+      bottom: 8%;
+      right: 5%;
+      font-family: 'Georgia', serif;
+      font-size: 20px;
+      font-style: italic;
+      font-weight: bold;
+      color: #1a5a3a;
+      text-shadow: 1px 1px 3px rgba(255,255,255,0.5);
+    }
+
+    /* ========== GALLERY STYLES ========== */
+    .gallery-container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .gallery-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 1400px;
+    }
+
+    .gallery-image-container {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+      box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+      transform: scale(0.95);
+      padding: 20px;
+    }
+
+    .gallery-image.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .gallery-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-placeholder.active {
+      opacity: 1;
+    }
+
+    .gallery-placeholder-icon {
+      font-size: 4rem;
+      margin-bottom: 10px;
+    }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      user-select: none;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .gallery-arrow.prev {
+      left: 15px;
+    }
+
+    .gallery-arrow.next {
+      right: 15px;
+    }
+
+    .gallery-arrow:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(1.1);
+    }
+
+    .gallery-arrow:active {
+      transform: scale(0.95);
+    }
+
+    .gallery-counter {
+      color: white;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .gallery-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .gallery-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-dot:hover {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .gallery-dot.active {
+      background: #ffd700;
+      box-shadow: 0 0 10px #ffd700;
+    }
+
+    .gallery-hint {
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    /* ========== GAME SECTION ========== */
+    .game-section {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      margin-top: 50px;
+    }
+
+    .game-title {
+      color: #ff4444;
+      font-size: 2.5rem;
+      font-family: 'Georgia', serif;
+      text-shadow: 0 0 20px rgba(255, 0, 0, 0.5), 2px 2px 4px rgba(0,0,0,0.8);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .game-subtitle {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .game-wrapper {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(255, 0, 0, 0.2), 0 15px 50px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(255, 68, 68, 0.3);
+    }
+
+    #gameCanvas {
+      display: block;
+      background: #0d0d1a;
+    }
+
+    .game-controls-info {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .game-controls-info span {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin: 0 3px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .game-container {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(255, 0, 0, 0.2), 0 15px 50px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(255, 68, 68, 0.3);
+    }
+
+    .game-ui {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .game-stats {
+      display: flex;
+      gap: 25px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 12px 25px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      font-size: 0.95rem;
+    }
+
+    .stamina-bar {
+      width: 100px;
+      height: 12px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .stamina-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #22cc22, #44ff44);
+      transition: width 0.1s ease;
+    }
+
+    .game-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    .game-overlay.hidden {
+      display: none;
+    }
+
+    .overlay-content {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .overlay-content h3 {
+      color: #ff4444;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+    }
+
+    .overlay-content p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      max-width: 400px;
+    }
+
+    .game-btn {
+      background: linear-gradient(135deg, #ff4444, #cc0000);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+    }
+
+    .game-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(255, 0, 0, 0.6);
+    }
+
+    /* ========== AUDIO BUTTON ========== */
+    .audio-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .audio-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(1.1);
+    }
+
+    .audio-btn:active {
+      transform: scale(0.95);
+    }
+
+    .audio-btn.muted {
+      background: rgba(255, 0, 0, 0.3);
+      border-color: rgba(255, 100, 100, 0.5);
+    }
+
+    .audio-btn .icon-sound,
+    .audio-btn .icon-muted {
+      display: none;
+    }
+
+    .audio-btn.playing .icon-sound {
+      display: block;
+    }
+
+    .audio-btn.muted .icon-muted {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== BACKGROUND AUDIO ========== -->
+  <audio id="bgAudio" loop>
+    <source src="dbd.mp3" type="audio/mpeg">
+    <source src="audio/background-music.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- ========== AUDIO MUTE BUTTON ========== -->
+  <button class="audio-btn playing" id="audioBtn" onclick="toggleAudio()">
+    <span class="icon-sound">🔊</span>
+    <span class="icon-muted">🔇</span>
+  </button>
+
+  <!-- ========== CHRISTMAS BACKGROUND ========== -->
+  <div class="christmas-background" id="christmasBg">
+    <div class="snow-ground"></div>
+
+    <!-- Top Light String -->
+    <div class="light-string" style="top: 80px; left: 0; width: 100%;"></div>
+    <div class="light red" style="top: 72px; left: 8%; animation-delay: 0s;"></div>
+    <div class="light green" style="top: 68px; left: 16%; animation-delay: 0.2s;"></div>
+    <div class="light yellow" style="top: 72px; left: 24%; animation-delay: 0.4s;"></div>
+    <div class="light blue" style="top: 68px; left: 32%; animation-delay: 0.6s;"></div>
+    <div class="light pink" style="top: 72px; left: 40%; animation-delay: 0.8s;"></div>
+    <div class="light cyan" style="top: 75px; left: 48%; animation-delay: 1s;"></div>
+    <div class="light orange" style="top: 72px; left: 56%; animation-delay: 1.2s;"></div>
+    <div class="light red" style="top: 68px; left: 64%; animation-delay: 1.4s;"></div>
+    <div class="light green" style="top: 72px; left: 72%; animation-delay: 1.6s;"></div>
+    <div class="light yellow" style="top: 68px; left: 80%; animation-delay: 1.8s;"></div>
+    <div class="light blue" style="top: 72px; left: 88%; animation-delay: 2s;"></div>
+
+    <!-- Christmas Tree -->
+    <div class="christmas-tree">
+      <div class="tree-star">⭐</div>
+      <div class="tree-layer tree-layer-1"></div>
+      <div class="tree-layer tree-layer-2"></div>
+      <div class="tree-layer tree-layer-3"></div>
+      <div class="tree-trunk"></div>
+      <div class="tree-ornament" style="top: 100px; left: 20px; background: #ff4444; color: #ff4444;"></div>
+      <div class="tree-ornament" style="top: 80px; left: 70px; background: #4444ff; color: #4444ff;"></div>
+      <div class="tree-ornament" style="top: 140px; left: 50px; background: #ffd700; color: #ffd700;"></div>
+      <div class="tree-ornament" style="top: 160px; left: 15px; background: #ff44ff; color: #ff44ff;"></div>
+      <div class="tree-ornament" style="top: 130px; left: 85px; background: #44ff44; color: #44ff44;"></div>
+      <div class="tree-ornament" style="top: 180px; left: 70px; background: #ff8800; color: #ff8800;"></div>
+    </div>
+
+    <!-- Lockers -->
+    <div class="locker locker-1">
+      <div class="locker-vent" style="top: 20px; left: 8px;"></div>
+      <div class="locker-vent" style="top: 20px; right: 8px;"></div>
+      <div class="locker-vent" style="top: 35px; left: 8px;"></div>
+      <div class="locker-vent" style="top: 35px; right: 8px;"></div>
+      <div class="locker-vent" style="top: 80px; left: 8px;"></div>
+      <div class="locker-vent" style="top: 80px; right: 8px;"></div>
+    </div>
+    <div class="locker locker-2">
+      <div class="locker-vent" style="top: 20px; left: 8px;"></div>
+      <div class="locker-vent" style="top: 20px; right: 8px;"></div>
+      <div class="locker-vent" style="top: 35px; left: 8px;"></div>
+      <div class="locker-vent" style="top: 35px; right: 8px;"></div>
+      <div class="locker-vent" style="top: 80px; left: 8px;"></div>
+      <div class="locker-vent" style="top: 80px; right: 8px;"></div>
+    </div>
+
+    <!-- Locker Lights -->
+    <div class="light-string" style="top: 37%; left: 22%; width: 20%;"></div>
+    <div class="light red" style="top: calc(37% - 8px); left: 24%; animation-delay: 0.3s;"></div>
+    <div class="light green" style="top: calc(37% - 12px); left: 28%; animation-delay: 0.6s;"></div>
+    <div class="light blue" style="top: calc(37% - 8px); left: 32%; animation-delay: 0.9s;"></div>
+    <div class="light yellow" style="top: calc(37% - 14px); left: 36%; animation-delay: 1.2s;"></div>
+    <div class="light pink" style="top: calc(37% - 10px); left: 40%; animation-delay: 1.5s;"></div>
+
+    <!-- Wreath -->
+    <div class="wreath">
+      <div class="wreath-bow"></div>
+      <div class="wreath-berry" style="top: 3px; left: -2px;"></div>
+      <div class="wreath-berry" style="top: -2px; left: 20px;"></div>
+      <div class="wreath-berry" style="top: 5px; right: -2px;"></div>
+      <div class="wreath-berry" style="bottom: 5px; right: -2px;"></div>
+      <div class="wreath-berry" style="bottom: -2px; left: 20px;"></div>
+      <div class="wreath-berry" style="bottom: 5px; left: -2px;"></div>
+    </div>
+
+    <!-- Guitarist 1 -->
+    <div class="guitarist guitarist-1">
+      <div class="guitarist-body">
+        <div class="santa-hat"></div>
+        <div class="hair"></div>
+        <div class="head"></div>
+        <div class="eye eye-left"></div>
+        <div class="eye eye-right"></div>
+        <div class="sweater">
+          <div class="sweater-stripe sweater-stripe-1"></div>
+          <div class="sweater-stripe sweater-stripe-2"></div>
+          <div class="sweater-dot" style="top: 32px; left: 15px;"></div>
+          <div class="sweater-dot" style="top: 32px; right: 15px;"></div>
+        </div>
+        <div class="guitar">
+          <div class="guitar-head"></div>
+          <div class="guitar-neck"></div>
+          <div class="guitar-body">
+            <div class="guitar-hole"></div>
+            <div class="guitar-decoration" style="top: 10px; left: 10px;"></div>
+            <div class="guitar-decoration" style="bottom: 10px; right: 10px;"></div>
+          </div>
+        </div>
+        <div class="legs">
+          <div class="leg"></div>
+          <div class="leg"></div>
+        </div>
+        <div class="boot boot-left"></div>
+        <div class="boot boot-right"></div>
+      </div>
+    </div>
+
+    <!-- Guitarist 2 -->
+    <div class="guitarist guitarist-2">
+      <div class="guitarist-body">
+        <div class="santa-hat"></div>
+        <div class="hair"></div>
+        <div class="head"></div>
+        <div class="eye eye-left"></div>
+        <div class="eye eye-right"></div>
+        <div class="sweater">
+          <div class="sweater-stripe sweater-stripe-1"></div>
+          <div class="sweater-stripe sweater-stripe-2"></div>
+          <div class="sweater-dot" style="top: 32px; left: 15px;"></div>
+          <div class="sweater-dot" style="top: 32px; right: 15px;"></div>
+        </div>
+        <div class="guitar">
+          <div class="guitar-head"></div>
+          <div class="guitar-neck"></div>
+          <div class="guitar-body">
+            <div class="guitar-hole"></div>
+            <div class="guitar-decoration" style="top: 10px; left: 10px;"></div>
+            <div class="guitar-decoration" style="bottom: 10px; right: 10px;"></div>
+          </div>
+        </div>
+        <div class="legs">
+          <div class="leg"></div>
+          <div class="leg"></div>
+        </div>
+        <div class="boot boot-left"></div>
+        <div class="boot boot-right"></div>
+      </div>
+    </div>
+
+    <!-- Presents -->
+    <div class="presents">
+      <div class="present present-1"></div>
+      <div class="present present-2"></div>
+      <div class="present present-3"></div>
+    </div>
+
+    <!-- Candy Canes -->
+    <div class="candy-cane candy-cane-1"></div>
+    <div class="candy-cane candy-cane-2"></div>
+
+    <!-- Snowman -->
+    <div class="snowman">
+      <div class="snowman-body">
+        <div class="snowman-hat">
+          <div class="hat-top"></div>
+          <div class="hat-band"></div>
+          <div class="hat-brim"></div>
+        </div>
+        <div class="snowball snowball-top"></div>
+        <div class="snowman-eye snowman-eye-left"></div>
+        <div class="snowman-eye snowman-eye-right"></div>
+        <div class="snowman-nose"></div>
+        <div class="snowball snowball-middle"></div>
+        <div class="snowman-scarf"></div>
+        <div class="snowman-button button-1"></div>
+        <div class="snowman-button button-2"></div>
+        <div class="snowman-button button-3"></div>
+        <div class="snowball snowball-bottom"></div>
+        <div class="snowman-arm arm-left"></div>
+        <div class="snowman-arm arm-right"></div>
+      </div>
+    </div>
+
+    <!-- Music Notes -->
+    <div class="music-note note-1">♪</div>
+    <div class="music-note note-2">♫</div>
+    <div class="music-note note-3">♪</div>
+    <div class="music-note note-4">♫</div>
+
+    <!-- Merry Christmas -->
+    <div class="merry-christmas">🎄 Merry Christmas! 🎄</div>
+  </div>
+
+  <!-- ========== PHOTO GALLERY ========== -->
+  <div class="gallery-container">
+    <div class="gallery-wrapper">
+      <div class="gallery-image-container">
+        <button class="gallery-arrow prev" id="prevBtn" onclick="changeImage(-1)">❮</button>
+        
+        <!-- Image 1 -->
+        <img src="images/1.jpg" alt="Photo 1" class="gallery-image active" data-index="0">
+        <!-- Image 2 -->
+        <img src="images/2.jpg" alt="Photo 2" class="gallery-image" data-index="1">
+        <!-- Image 3 -->
+        <img src="images/3.jpg" alt="Photo 3" class="gallery-image" data-index="2">
+        <!-- Image 4 -->
+        <img src="images/4.jpg" alt="Photo 4" class="gallery-image" data-index="3">
+        <!-- Image 5 -->
+        <img src="images/5.jpg" alt="Photo 5" class="gallery-image" data-index="4">
+        <!-- Image 6 -->
+        <img src="images/6.jpg" alt="Photo 6" class="gallery-image" data-index="5">
+        <!-- Image 7 -->
+        <img src="images/7.jpg" alt="Photo 7" class="gallery-image" data-index="6">
+        <!-- Image 8 -->
+        <img src="images/8.jpg" alt="Photo 8" class="gallery-image" data-index="7">
+        <!-- Image 9 -->
+        <img src="images/9.jpg" alt="Photo 9" class="gallery-image" data-index="8">
+        <!-- Image 10 -->
+        <img src="images/10.jpg" alt="Photo 10" class="gallery-image" data-index="9">
+        <!-- Image 11 -->
+        <img src="images/11.jpg" alt="Photo 11" class="gallery-image" data-index="10">
+        <!-- Image 12 -->
+        <img src="images/12.jpg" alt="Photo 12" class="gallery-image" data-index="11">
+        <!-- Image 13 -->
+        <img src="images/13.jpg" alt="Photo 13" class="gallery-image" data-index="12">
+        
+        <button class="gallery-arrow next" id="nextBtn" onclick="changeImage(1)">❯</button>
+      </div>
+    </div>
+    
+    <div class="gallery-counter">
+      <span id="currentIndex">1</span> / <span id="totalImages">13</span>
+    </div>
+    
+    <div class="gallery-dots" id="galleryDots"></div>
+    
+    <p class="gallery-hint">Use ← → arrow keys or click buttons to navigate</p>
+  </div>
+
+  <!-- ========== DEAD BY DAYLIGHT STYLE GAME ========== -->
+  <div class="game-section">
+    <h2 class="game-title">🎮 Escape the Killer 🎮</h2>
+    <p class="game-subtitle">Repair 3 generators and escape through the gate!</p>
+    
+    <div class="game-container" id="gameContainer">
+      <canvas id="gameCanvas" width="1200" height="600"></canvas>
+      
+      <div class="game-ui">
+        <div class="game-stats">
+          <div class="stat-item">
+            <span class="stat-icon">⚡</span>
+            <span class="stat-label">Generators:</span>
+            <span id="genCount">0</span>/3
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">❤️</span>
+            <span class="stat-label">Health:</span>
+            <span id="healthCount">3</span>/3
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">🏃</span>
+            <span class="stat-label">Stamina:</span>
+            <div class="stamina-bar">
+              <div class="stamina-fill" id="staminaBar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="game-overlay" id="gameOverlay">
+        <div class="overlay-content">
+          <h3 id="overlayTitle">Escape the Killer</h3>
+          <p id="overlayText">Use WASD to move, SHIFT to sprint, E to interact with generators and doors to teleport away. Avoid the killer and repair 3 generators to power the exit gate!</p>
+          <button class="game-btn" id="startBtn" onclick="startGame()">Start Game</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="game-controls-info">
+      <span>🎮 WASD - Move</span>
+      <span>🏃 SHIFT - Sprint</span>
+      <span>🔧 E - Repair/Door</span>
+      <span>⌨️ SPACE - Skill Check</span>
+    </div>
+  </div>
+
+  <script>
+    // ========== AUDIO CONTROL ==========
+    const audio = document.getElementById('bgAudio');
+    const audioBtn = document.getElementById('audioBtn');
+    
+    // Try to autoplay audio
+    function tryAutoplay() {
+      audio.volume = 0.5; // Set initial volume to 50%
+      const playPromise = audio.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          // Autoplay started successfully
+          audioBtn.classList.remove('muted');
+          audioBtn.classList.add('playing');
+        }).catch(() => {
+          // Autoplay was prevented, start muted
+          audioBtn.classList.add('muted');
+          audioBtn.classList.remove('playing');
+        });
+      }
+    }
+    
+    // Try autoplay on page load
+    tryAutoplay();
+    
+    // Also try on first user interaction (for browsers that block autoplay)
+    document.addEventListener('click', function initAudio() {
+      if (audio.paused && !audioBtn.classList.contains('muted')) {
+        audio.play();
+        audioBtn.classList.remove('muted');
+        audioBtn.classList.add('playing');
+      }
+      document.removeEventListener('click', initAudio);
+    }, { once: true });
+    
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        audioBtn.classList.remove('muted');
+        audioBtn.classList.add('playing');
+      } else {
+        audio.pause();
+        audioBtn.classList.add('muted');
+        audioBtn.classList.remove('playing');
+      }
+    }
+
+    // ========== GALLERY FUNCTIONALITY ==========
+    let currentImage = 0;
+    const totalImages = 13;
+    const images = document.querySelectorAll('.gallery-image');
+    const dotsContainer = document.getElementById('galleryDots');
+    
+    // Generate dots
+    for (let i = 0; i < totalImages; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToImage(i);
+      dotsContainer.appendChild(dot);
+    }
+    
+    const dots = document.querySelectorAll('.gallery-dot');
+    
+    function updateGallery() {
+      // Update images
+      images.forEach((img, index) => {
+        img.classList.toggle('active', index === currentImage);
+      });
+      
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentImage);
+      });
+      
+      // Update counter
+      document.getElementById('currentIndex').textContent = currentImage + 1;
+    }
+    
+    function changeImage(direction) {
+      currentImage += direction;
+      
+      // Loop around
+      if (currentImage >= totalImages) currentImage = 0;
+      if (currentImage < 0) currentImage = totalImages - 1;
+      
+      updateGallery();
+    }
+    
+    function goToImage(index) {
+      currentImage = index;
+      updateGallery();
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        changeImage(1);
+      } else if (e.key === 'ArrowLeft') {
+        changeImage(-1);
+      }
+    });
+
+    // ========== SNOWFLAKE GENERATOR ==========
+    function createSnowflakes() {
+      const container = document.getElementById('christmasBg');
+      const snowflakeChars = ['❄', '❅', '❆', '•'];
+      
+      for (let i = 0; i < 50; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
+        snowflake.style.left = Math.random() * 100 + '%';
+        snowflake.style.fontSize = (Math.random() * 10 + 8) + 'px';
+        snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        snowflake.style.animationDelay = (Math.random() * 10) + 's';
+        snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+        container.appendChild(snowflake);
+      }
+    }
+
+    // Initialize snowflakes when page loads
+    window.addEventListener('DOMContentLoaded', createSnowflakes);
+
+    // ========== DEAD BY DAYLIGHT STYLE GAME ==========
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Game constants
+    const TILE_SIZE = 50;
+    const MAP_WIDTH = canvas.width;
+    const MAP_HEIGHT = canvas.height;
+
+    // Load player sprite
+    const playerSprite = new Image();
+    playerSprite.src = 'sprite.png';
+
+    // Sound effects using Web Audio API
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    function playSound(type) {
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      
+      switch(type) {
+        case 'hit':
+          // Painful hit sound
+          oscillator.type = 'sawtooth';
+          oscillator.frequency.setValueAtTime(200, audioCtx.currentTime);
+          oscillator.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.3);
+          gainNode.gain.setValueAtTime(0.4, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+          oscillator.start();
+          oscillator.stop(audioCtx.currentTime + 0.3);
+          break;
+          
+        case 'generator_complete':
+          // Success/completion sound
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(523, audioCtx.currentTime);
+          oscillator.frequency.setValueAtTime(659, audioCtx.currentTime + 0.1);
+          oscillator.frequency.setValueAtTime(784, audioCtx.currentTime + 0.2);
+          gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+          oscillator.start();
+          oscillator.stop(audioCtx.currentTime + 0.4);
+          break;
+          
+        case 'skill_check_success':
+          // Quick success beep
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
+          gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+          oscillator.start();
+          oscillator.stop(audioCtx.currentTime + 0.1);
+          break;
+          
+        case 'skill_check_fail':
+          // Failure buzz
+          oscillator.type = 'square';
+          oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+          oscillator.frequency.setValueAtTime(100, audioCtx.currentTime + 0.1);
+          gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+          oscillator.start();
+          oscillator.stop(audioCtx.currentTime + 0.2);
+          break;
+          
+        case 'skill_check_appear':
+          // Alert sound
+          oscillator.type = 'triangle';
+          oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+          oscillator.frequency.setValueAtTime(800, audioCtx.currentTime + 0.05);
+          gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+          oscillator.start();
+          oscillator.stop(audioCtx.currentTime + 0.1);
+          break;
+          
+        case 'teleport':
+          // Whoosh teleport sound
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(200, audioCtx.currentTime);
+          oscillator.frequency.exponentialRampToValueAtTime(1000, audioCtx.currentTime + 0.15);
+          oscillator.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.3);
+          gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+          oscillator.start();
+          oscillator.stop(audioCtx.currentTime + 0.3);
+          break;
+          
+        case 'heartbeat':
+          // Heartbeat thump
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(60, audioCtx.currentTime);
+          gainNode.gain.setValueAtTime(0.4 * gameState.heartbeatIntensity, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+          oscillator.start();
+          oscillator.stop(audioCtx.currentTime + 0.15);
+          break;
+          
+        case 'win':
+          // Victory fanfare
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(523, audioCtx.currentTime);
+          oscillator.frequency.setValueAtTime(659, audioCtx.currentTime + 0.15);
+          oscillator.frequency.setValueAtTime(784, audioCtx.currentTime + 0.3);
+          oscillator.frequency.setValueAtTime(1047, audioCtx.currentTime + 0.45);
+          gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.7);
+          oscillator.start();
+          oscillator.stop(audioCtx.currentTime + 0.7);
+          break;
+          
+        case 'lose':
+          // Death sound
+          oscillator.type = 'sawtooth';
+          oscillator.frequency.setValueAtTime(300, audioCtx.currentTime);
+          oscillator.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.8);
+          gainNode.gain.setValueAtTime(0.4, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
+          oscillator.start();
+          oscillator.stop(audioCtx.currentTime + 0.8);
+          break;
+      }
+    }
+    
+    // Heartbeat interval
+    let lastHeartbeat = 0;
+
+    // Game state
+    let gameState = {
+      running: false,
+      won: false,
+      lost: false,
+      generatorsRepaired: 0,
+      generatorsNeeded: 3,
+      playerHealth: 3,
+      isSprinting: false,
+      sprintEnergy: 100,
+      terrorRadius: 200,
+      skillCheckActive: false,
+      skillCheckProgress: 0,
+      skillCheckTarget: 0,
+      skillCheckSuccess: false,
+      heartbeatIntensity: 0
+    };
+
+    // Player object
+    const player = {
+      x: 100,
+      y: 300,
+      width: 40,
+      height: 50,
+      speed: 3,
+      sprintSpeed: 5,
+      isRepairing: false,
+      repairProgress: 0,
+      currentGenerator: null,
+      injured: false,
+      scratchMarks: [],
+      lastScratchTime: 0
+    };
+
+    // Killer object
+    const killer = {
+      x: 1000,
+      y: 200,
+      width: 50,
+      height: 60,
+      speed: 3.5,
+      chaseSpeed: 3.5,
+      isChasing: true,
+      lastSeenPlayer: null,
+      patrolPoints: [],
+      currentPatrolIndex: 0,
+      attackCooldown: 0,
+      detectionRange: 180,
+      chaseRange: 350,
+      chaseTimer: 0
+    };
+
+    // Map obstacles (walls, lockers)
+    const obstacles = [];
+    const generators = [];
+    const lockers = [];
+    const exitGates = [];
+
+    // Generate map
+    function generateMap() {
+      obstacles.length = 0;
+      generators.length = 0;
+      lockers.length = 0;
+      exitGates.length = 0;
+
+      // Border walls
+      obstacles.push({ x: 0, y: 0, width: MAP_WIDTH, height: 20 });
+      obstacles.push({ x: 0, y: MAP_HEIGHT - 20, width: MAP_WIDTH, height: 20 });
+      obstacles.push({ x: 0, y: 0, width: 20, height: MAP_HEIGHT });
+      obstacles.push({ x: MAP_WIDTH - 20, y: 0, width: 20, height: MAP_HEIGHT });
+
+      // Interior walls and structures
+      const structures = [
+        { x: 150, y: 100, width: 120, height: 80 },
+        { x: 400, y: 80, width: 100, height: 100 },
+        { x: 650, y: 100, width: 150, height: 70 },
+        { x: 100, y: 350, width: 80, height: 120 },
+        { x: 300, y: 300, width: 140, height: 100 },
+        { x: 550, y: 280, width: 100, height: 140 },
+        { x: 750, y: 350, width: 120, height: 100 },
+        { x: 200, y: 480, width: 100, height: 80 },
+        { x: 450, y: 450, width: 130, height: 90 },
+        { x: 700, y: 480, width: 100, height: 80 }
+      ];
+
+      structures.forEach(s => obstacles.push(s));
+
+      // Generators (7 total, need 5 to escape)
+      const genPositions = [
+        { x: 180, y: 200 },
+        { x: 450, y: 150 },
+        { x: 720, y: 180 },
+        { x: 130, y: 420 },
+        { x: 380, y: 380 },
+        { x: 620, y: 400 },
+        { x: 800, y: 440 }
+      ];
+
+      genPositions.forEach(pos => {
+        generators.push({
+          x: pos.x,
+          y: pos.y,
+          width: 60,
+          height: 40,
+          progress: 0,
+          completed: false,
+          sparking: false
+        });
+      });
+
+      // Lockers for hiding
+      const lockerPositions = [
+        { x: 280, y: 120 },
+        { x: 560, y: 100 },
+        { x: 200, y: 360 },
+        { x: 460, y: 320 },
+        { x: 680, y: 360 },
+        { x: 320, y: 500 },
+        { x: 600, y: 470 }
+      ];
+
+      lockerPositions.forEach((pos, index) => {
+        lockers.push({
+          x: pos.x,
+          y: pos.y,
+          width: 30,
+          height: 50,
+          occupied: false,
+          id: index,
+          cooldown: 0
+        });
+      });
+
+      // Exit gates (appear after generators are done)
+      exitGates.push({ x: MAP_WIDTH - 30, y: MAP_HEIGHT / 2 - 40, width: 30, height: 80, open: false });
+
+      // Killer patrol points
+      killer.patrolPoints = [
+        { x: 200, y: 150 },
+        { x: 700, y: 150 },
+        { x: 700, y: 450 },
+        { x: 200, y: 450 }
+      ];
+    }
+
+    // Input handling
+    const keys = {};
+    document.addEventListener('keydown', (e) => {
+      keys[e.key.toLowerCase()] = true;
+      keys[e.code] = true;
+      
+      if (e.key === 'r' || e.key === 'R') {
+        restartGame();
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+      keys[e.key.toLowerCase()] = false;
+      keys[e.code] = false;
+    });
+
+    // Collision detection
+    function rectCollision(a, b) {
+      return a.x < b.x + b.width &&
+             a.x + a.width > b.x &&
+             a.y < b.y + b.height &&
+             a.y + a.height > b.y;
+    }
+
+    function checkObstacleCollision(entity, newX, newY) {
+      const testEntity = { x: newX, y: newY, width: entity.width, height: entity.height };
+      
+      for (let obs of obstacles) {
+        if (rectCollision(testEntity, obs)) {
+          return true;
+        }
+      }
+      
+      return false;
+    }
+
+    // Distance calculation
+    function distance(a, b) {
+      return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+    }
+
+    // Line of sight check
+    function hasLineOfSight(from, to) {
+      const steps = 20;
+      const dx = (to.x - from.x) / steps;
+      const dy = (to.y - from.y) / steps;
+      
+      for (let i = 0; i < steps; i++) {
+        const testPoint = {
+          x: from.x + dx * i,
+          y: from.y + dy * i,
+          width: 5,
+          height: 5
+        };
+        
+        for (let obs of obstacles) {
+          if (rectCollision(testPoint, obs)) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    // Update player
+    function updatePlayer() {
+      if (!gameState.running) return;
+
+      let dx = 0, dy = 0;
+      
+      if (keys['w'] || keys['arrowup']) dy -= 1;
+      if (keys['s'] || keys['arrowdown']) dy += 1;
+      if (keys['a'] || keys['arrowleft']) dx -= 1;
+      if (keys['d'] || keys['arrowright']) dx += 1;
+
+      // Sprinting - only works if stamina > 0
+      const wantToSprint = keys['shift'] || keys['Shift'];
+      gameState.isSprinting = wantToSprint && gameState.sprintEnergy > 0 && (dx !== 0 || dy !== 0);
+      
+      if (gameState.isSprinting) {
+        // Deplete stamina 50% faster (0.75 instead of 0.5)
+        gameState.sprintEnergy = Math.max(0, gameState.sprintEnergy - 0.75);
+      } else {
+        // Regenerate stamina
+        gameState.sprintEnergy = Math.min(100, gameState.sprintEnergy + 0.3);
+      }
+
+      // Normalize diagonal movement
+      if (dx !== 0 && dy !== 0) {
+        dx *= 0.707;
+        dy *= 0.707;
+      }
+
+      const currentSpeed = gameState.isSprinting ? player.sprintSpeed : player.speed;
+      const newX = player.x + dx * currentSpeed;
+      const newY = player.y + dy * currentSpeed;
+
+      // Check collision and move
+      if (!checkObstacleCollision(player, newX, player.y)) {
+        player.x = newX;
+      }
+      if (!checkObstacleCollision(player, player.x, newY)) {
+        player.y = newY;
+      }
+
+      // Keep in bounds
+      player.x = Math.max(25, Math.min(MAP_WIDTH - player.width - 25, player.x));
+      player.y = Math.max(25, Math.min(MAP_HEIGHT - player.height - 25, player.y));
+
+      // Scratch marks when sprinting
+      if (gameState.isSprinting && (dx !== 0 || dy !== 0)) {
+        const now = Date.now();
+        if (now - player.lastScratchTime > 200) {
+          player.scratchMarks.push({
+            x: player.x + player.width / 2,
+            y: player.y + player.height / 2,
+            time: now
+          });
+          player.lastScratchTime = now;
+        }
+      }
+
+      // Remove old scratch marks
+      player.scratchMarks = player.scratchMarks.filter(mark => Date.now() - mark.time < 5000);
+
+      // Update locker cooldowns
+      lockers.forEach(locker => {
+        if (locker.cooldown > 0) locker.cooldown--;
+      });
+
+      // Check for locker teleportation first (before generator repair)
+      let usedLocker = false;
+      if (keys['e'] || keys['E']) {
+        for (let locker of lockers) {
+          if (locker.cooldown === 0 && distance(player, locker) < 50) {
+            // Find a random different locker to teleport to
+            const otherLockers = lockers.filter(l => l.id !== locker.id);
+            const targetLocker = otherLockers[Math.floor(Math.random() * otherLockers.length)];
+            
+            player.x = targetLocker.x;
+            player.y = targetLocker.y;
+            
+            // Set cooldown on both lockers
+            locker.cooldown = 60;
+            targetLocker.cooldown = 60;
+            usedLocker = true;
+            playSound('teleport');
+            break;
+          }
+        }
+      }
+
+      // Generator repair with E key (hold) - only if not using locker
+      player.isRepairing = false;
+      if (!usedLocker && (keys['e'] || keys['E'])) {
+        for (let gen of generators) {
+          if (!gen.completed && distance(player, gen) < 70) {
+            player.isRepairing = true;
+            player.currentGenerator = gen;
+            
+            // Random skill check
+            if (!gameState.skillCheckActive && Math.random() < 0.02) {
+              startSkillCheck();
+            }
+            
+            if (!gameState.skillCheckActive) {
+              gen.progress += 0.4;
+              if (gen.progress >= 100) {
+                gen.completed = true;
+                gameState.generatorsRepaired++;
+                playSound('generator_complete');
+                
+                // Check win condition
+                if (gameState.generatorsRepaired >= gameState.generatorsNeeded) {
+                  exitGates[0].open = true;
+                }
+              }
+            }
+            break;
+          }
+        }
+      }
+
+      // Check exit gate
+      if (exitGates[0].open) {
+        const gate = exitGates[0];
+        if (player.x + player.width > gate.x && rectCollision(player, gate)) {
+          gameState.won = true;
+          gameState.running = false;
+          playSound('win');
+        }
+      }
+    }
+
+    // Skill check system
+    function startSkillCheck() {
+      gameState.skillCheckActive = true;
+      gameState.skillCheckProgress = 0;
+      gameState.skillCheckTarget = 50 + Math.random() * 30;
+      gameState.skillCheckSuccess = false;
+      playSound('skill_check_appear');
+    }
+
+    function updateSkillCheck() {
+      if (!gameState.skillCheckActive) return;
+      
+      gameState.skillCheckProgress += 2;
+      
+      if (keys[' '] || keys['Space']) {
+        const diff = Math.abs(gameState.skillCheckProgress - gameState.skillCheckTarget);
+        if (diff < 10) {
+          // Success! Bonus progress
+          gameState.skillCheckSuccess = true;
+          if (player.currentGenerator) {
+            player.currentGenerator.progress += 10;
+          }
+          playSound('skill_check_success');
+        } else {
+          // Failed skill check - reduce generator by 10%
+          if (player.currentGenerator) {
+            player.currentGenerator.progress = Math.max(0, player.currentGenerator.progress - 10);
+            player.currentGenerator.sparking = true;
+            setTimeout(() => {
+              if (player.currentGenerator) player.currentGenerator.sparking = false;
+            }, 1000);
+          }
+          playSound('skill_check_fail');
+        }
+        gameState.skillCheckActive = false;
+      }
+      
+      if (gameState.skillCheckProgress > 100) {
+        // Missed skill check completely - reduce generator by 10%
+        if (player.currentGenerator) {
+          player.currentGenerator.progress = Math.max(0, player.currentGenerator.progress - 10);
+          player.currentGenerator.sparking = true;
+          setTimeout(() => {
+            if (player.currentGenerator) player.currentGenerator.sparking = false;
+          }, 1000);
+        }
+        playSound('skill_check_fail');
+        gameState.skillCheckActive = false;
+      }
+    }
+
+    // Update killer AI - Always chasing player NO MATTER WHAT
+    function updateKiller() {
+      if (!gameState.running) return;
+
+      // Track killer position for stuck detection
+      if (!killer.lastPositions) killer.lastPositions = [];
+      if (!killer.stuckCounter) killer.stuckCounter = 0;
+      
+      // Save position every 10 frames
+      if (Math.random() < 0.1) {
+        killer.lastPositions.push({ x: killer.x, y: killer.y });
+        if (killer.lastPositions.length > 5) {
+          killer.lastPositions.shift();
+        }
+      }
+      
+      // Check if stuck (hasn't moved much in last few position checks)
+      if (killer.lastPositions.length >= 5) {
+        const firstPos = killer.lastPositions[0];
+        const lastPos = killer.lastPositions[killer.lastPositions.length - 1];
+        const movedDist = Math.sqrt((lastPos.x - firstPos.x) ** 2 + (lastPos.y - firstPos.y) ** 2);
+        
+        if (movedDist < 10) {
+          killer.stuckCounter++;
+        } else {
+          killer.stuckCounter = 0;
+        }
+      }
+      
+      // If stuck for too long, teleport closer to player
+      if (killer.stuckCounter > 30) {
+        // Find a random position closer to player but not too close
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 150 + Math.random() * 100;
+        const newX = player.x + Math.cos(angle) * dist;
+        const newY = player.y + Math.sin(angle) * dist;
+        
+        // Make sure new position is in bounds
+        killer.x = Math.max(50, Math.min(MAP_WIDTH - 50, newX));
+        killer.y = Math.max(50, Math.min(MAP_HEIGHT - 50, newY));
+        
+        killer.stuckCounter = 0;
+        killer.lastPositions = [];
+      }
+
+      // Always chase player directly
+      const dx = player.x - killer.x;
+      const dy = player.y - killer.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      
+      // Move towards player
+      if (dist > 0) {
+        const speed = 2.0;
+        const moveX = (dx / dist) * speed;
+        const moveY = (dy / dist) * speed;
+        
+        // Try to move in both directions
+        let movedX = false;
+        let movedY = false;
+        
+        // Move X
+        const newX = killer.x + moveX;
+        if (!checkObstacleCollision(killer, newX, killer.y)) {
+          killer.x = newX;
+          movedX = true;
+        }
+        
+        // Move Y
+        const newY = killer.y + moveY;
+        if (!checkObstacleCollision(killer, killer.x, newY)) {
+          killer.y = newY;
+          movedY = true;
+        }
+        
+        // If blocked on X, try sliding vertically
+        if (!movedX) {
+          const slideSpeed = speed * 1.5;
+          if (!checkObstacleCollision(killer, killer.x, killer.y + slideSpeed)) {
+            killer.y += slideSpeed;
+          } else if (!checkObstacleCollision(killer, killer.x, killer.y - slideSpeed)) {
+            killer.y -= slideSpeed;
+          }
+        }
+        
+        // If blocked on Y, try sliding horizontally
+        if (!movedY) {
+          const slideSpeed = speed * 1.5;
+          if (!checkObstacleCollision(killer, killer.x + slideSpeed, killer.y)) {
+            killer.x += slideSpeed;
+          } else if (!checkObstacleCollision(killer, killer.x - slideSpeed, killer.y)) {
+            killer.x -= slideSpeed;
+          }
+        }
+      }
+
+      // Attack player when close
+      const distToPlayer = Math.sqrt((player.x - killer.x) ** 2 + (player.y - killer.y) ** 2);
+      killer.attackCooldown = Math.max(0, killer.attackCooldown - 1);
+      
+      if (distToPlayer < 50 && killer.attackCooldown === 0) {
+        gameState.playerHealth--;
+        killer.attackCooldown = 90;
+        player.injured = gameState.playerHealth === 1;
+        
+        // Play hit sound
+        playSound('hit');
+        
+        // Respawn killer to starting position
+        killer.x = 1000;
+        killer.y = 200;
+        
+        if (gameState.playerHealth <= 0) {
+          gameState.lost = true;
+          gameState.running = false;
+          playSound('lose');
+        }
+      }
+
+      // Heartbeat effect based on distance
+      gameState.heartbeatIntensity = Math.max(0, 1 - (distToPlayer / 200));
+      
+      // Play heartbeat sound
+      const now = Date.now();
+      const heartbeatInterval = 800 - (gameState.heartbeatIntensity * 500);
+      if (gameState.heartbeatIntensity > 0.2 && now - lastHeartbeat > heartbeatInterval) {
+        playSound('heartbeat');
+        lastHeartbeat = now;
+      }
+    }
+
+    // Draw functions
+    function drawMap() {
+      // Floor
+      ctx.fillStyle = '#1a1a2e';
+      ctx.fillRect(0, 0, MAP_WIDTH, MAP_HEIGHT);
+      
+      // Grid pattern
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < MAP_WIDTH; x += 50) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, MAP_HEIGHT);
+        ctx.stroke();
+      }
+      for (let y = 0; y < MAP_HEIGHT; y += 50) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(MAP_WIDTH, y);
+        ctx.stroke();
+      }
+    }
+
+    function drawObstacles() {
+      // Walls
+      obstacles.forEach(obs => {
+        ctx.fillStyle = '#2d2d4a';
+        ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+        ctx.strokeStyle = '#4a4a6a';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(obs.x, obs.y, obs.width, obs.height);
+      });
+
+      // Lockers (brown with yellow handle, shows cooldown)
+      lockers.forEach(locker => {
+        ctx.fillStyle = locker.cooldown > 0 ? '#5a3010' : '#8b4513';
+        ctx.fillRect(locker.x, locker.y, locker.width, locker.height);
+        ctx.strokeStyle = '#5a2d0a';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(locker.x, locker.y, locker.width, locker.height);
+        
+        // Handle
+        ctx.fillStyle = locker.cooldown > 0 ? '#888800' : '#ffd700';
+        ctx.beginPath();
+        ctx.arc(locker.x + 8, locker.y + locker.height / 2, 4, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // "DOOR" label
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '9px Arial';
+        ctx.fillText('DOOR', locker.x + 2, locker.y - 3);
+      });
+
+    }
+
+    function drawGenerators() {
+      generators.forEach(gen => {
+        const centerX = gen.x + gen.width / 2;
+        const centerY = gen.y + gen.height / 2;
+        
+        // Generator base/platform
+        ctx.fillStyle = '#2a2a3a';
+        ctx.fillRect(gen.x - 5, gen.y + gen.height - 8, gen.width + 10, 12);
+        
+        // Generator body - main machine
+        if (gen.completed) {
+          // Completed - glowing green
+          const gradient = ctx.createLinearGradient(gen.x, gen.y, gen.x, gen.y + gen.height);
+          gradient.addColorStop(0, '#2d6b2d');
+          gradient.addColorStop(0.5, '#3d8b3d');
+          gradient.addColorStop(1, '#2d5a2d');
+          ctx.fillStyle = gradient;
+        } else if (gen.sparking) {
+          // Sparking - red warning
+          ctx.fillStyle = '#aa3333';
+        } else {
+          // Normal - industrial gray
+          const gradient = ctx.createLinearGradient(gen.x, gen.y, gen.x, gen.y + gen.height);
+          gradient.addColorStop(0, '#5a5a6a');
+          gradient.addColorStop(0.5, '#4a4a5a');
+          gradient.addColorStop(1, '#3a3a4a');
+          ctx.fillStyle = gradient;
+        }
+        ctx.fillRect(gen.x, gen.y, gen.width, gen.height);
+        
+        // Generator outline
+        ctx.strokeStyle = gen.completed ? '#44aa44' : '#666677';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(gen.x, gen.y, gen.width, gen.height);
+        
+        // Generator details - pipes/vents
+        ctx.fillStyle = '#333344';
+        ctx.fillRect(gen.x + 5, gen.y + 5, 15, 8);
+        ctx.fillRect(gen.x + 5, gen.y + 16, 15, 8);
+        ctx.fillRect(gen.x + gen.width - 20, gen.y + 5, 15, 8);
+        ctx.fillRect(gen.x + gen.width - 20, gen.y + 16, 15, 8);
+        
+        // Center panel/screen
+        if (gen.completed) {
+          ctx.fillStyle = '#44ff44';
+        } else {
+          ctx.fillStyle = gen.sparking ? '#ff4444' : '#ffaa00';
+        }
+        ctx.fillRect(gen.x + gen.width/2 - 8, gen.y + 8, 16, 12);
+        
+        // Piston/cylinder on top
+        ctx.fillStyle = '#555566';
+        ctx.fillRect(gen.x + gen.width/2 - 5, gen.y - 8, 10, 10);
+        ctx.fillStyle = '#777788';
+        ctx.fillRect(gen.x + gen.width/2 - 3, gen.y - 12, 6, 6);
+        
+        // Progress bar (below generator)
+        if (!gen.completed) {
+          // Bar background
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+          ctx.fillRect(gen.x - 2, gen.y + gen.height + 8, gen.width + 4, 10);
+          ctx.strokeStyle = '#555555';
+          ctx.lineWidth = 1;
+          ctx.strokeRect(gen.x - 2, gen.y + gen.height + 8, gen.width + 4, 10);
+          
+          // Progress fill
+          const progressGradient = ctx.createLinearGradient(gen.x, 0, gen.x + gen.width, 0);
+          progressGradient.addColorStop(0, '#ff8800');
+          progressGradient.addColorStop(1, '#ffcc00');
+          ctx.fillStyle = progressGradient;
+          ctx.fillRect(gen.x, gen.y + gen.height + 10, (gen.progress / 100) * gen.width, 6);
+          
+          // Progress percentage text
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 9px Arial';
+          ctx.fillText(Math.floor(gen.progress) + '%', gen.x + gen.width / 2 - 10, gen.y + gen.height + 24);
+        }
+        
+        // Sparks effect
+        if (gen.sparking) {
+          for (let i = 0; i < 8; i++) {
+            ctx.fillStyle = i % 2 === 0 ? '#ffff00' : '#ff8800';
+            ctx.beginPath();
+            ctx.arc(
+              gen.x + Math.random() * gen.width,
+              gen.y + Math.random() * gen.height,
+              1 + Math.random() * 2,
+              0,
+              Math.PI * 2
+            );
+            ctx.fill();
+          }
+        }
+        
+        // Completed indicator
+        if (gen.completed) {
+          ctx.fillStyle = '#00ff00';
+          ctx.font = 'bold 18px Arial';
+          ctx.fillText('✓', centerX - 6, centerY + 6);
+          
+          // Glow effect
+          ctx.shadowColor = '#00ff00';
+          ctx.shadowBlur = 10;
+          ctx.strokeStyle = '#00ff00';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(gen.x - 2, gen.y - 2, gen.width + 4, gen.height + 4);
+          ctx.shadowBlur = 0;
+        }
+        
+        // "GEN" label
+        if (!gen.completed) {
+          ctx.fillStyle = '#aaaaaa';
+          ctx.font = '8px Arial';
+          ctx.fillText('GEN', gen.x + gen.width/2 - 8, gen.y - 3);
+        }
+      });
+    }
+
+    function drawExitGate() {
+      const gate = exitGates[0];
+      if (gameState.generatorsRepaired >= gameState.generatorsNeeded) {
+        ctx.fillStyle = gate.open ? '#00ff00' : '#444444';
+        ctx.fillRect(gate.x, gate.y, gate.width, gate.height);
+        
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '14px Arial';
+        ctx.save();
+        ctx.translate(gate.x + 15, gate.y + gate.height / 2 + 20);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('EXIT', 0, 0);
+        ctx.restore();
+      }
+    }
+
+    function drawScratchMarks() {
+      player.scratchMarks.forEach(mark => {
+        const age = (Date.now() - mark.time) / 5000;
+        ctx.fillStyle = `rgba(255, 0, 0, ${0.5 - age * 0.5})`;
+        ctx.beginPath();
+        ctx.moveTo(mark.x, mark.y - 5);
+        ctx.lineTo(mark.x + 5, mark.y + 5);
+        ctx.lineTo(mark.x - 5, mark.y + 5);
+        ctx.closePath();
+        ctx.fill();
+      });
+    }
+
+    function drawPlayer() {
+      // Draw player sprite
+      if (playerSprite.complete) {
+        ctx.save();
+        if (player.injured) {
+          ctx.globalAlpha = 0.5 + Math.sin(Date.now() / 100) * 0.3;
+        }
+        ctx.drawImage(playerSprite, player.x - 5, player.y - 10, player.width + 10, player.height + 20);
+        ctx.restore();
+      } else {
+        // Fallback rectangle
+        ctx.fillStyle = player.injured ? '#ff6666' : '#4488ff';
+        ctx.fillRect(player.x, player.y, player.width, player.height);
+      }
+      
+      // Sprint indicator
+      if (gameState.isSprinting) {
+        ctx.strokeStyle = '#00ffff';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(player.x - 2, player.y - 2, player.width + 4, player.height + 4);
+      }
+    }
+
+    function drawKiller() {
+      // Killer body
+      ctx.fillStyle = killer.isChasing ? '#ff0000' : '#660000';
+      ctx.fillRect(killer.x, killer.y, killer.width, killer.height);
+      
+      // Killer mask/face
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(killer.x + 10, killer.y + 10, killer.width - 20, 25);
+      
+      // Eyes
+      ctx.fillStyle = '#ff0000';
+      ctx.beginPath();
+      ctx.arc(killer.x + 18, killer.y + 20, 4, 0, Math.PI * 2);
+      ctx.arc(killer.x + killer.width - 18, killer.y + 20, 4, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Weapon
+      ctx.fillStyle = '#888888';
+      ctx.fillRect(killer.x + killer.width, killer.y + 20, 25, 5);
+    }
+
+    function drawUI() {
+      // Update HTML UI elements
+      document.getElementById('genCount').textContent = gameState.generatorsRepaired;
+      document.getElementById('healthCount').textContent = gameState.playerHealth;
+      document.getElementById('staminaBar').style.width = gameState.sprintEnergy + '%';
+
+      // Terror radius indicator (heartbeat) - red screen effect
+      if (gameState.heartbeatIntensity > 0) {
+        const pulse = Math.sin(Date.now() / (200 - gameState.heartbeatIntensity * 150)) * 0.5 + 0.5;
+        ctx.fillStyle = `rgba(255, 0, 0, ${gameState.heartbeatIntensity * pulse * 0.3})`;
+        ctx.fillRect(0, 0, MAP_WIDTH, MAP_HEIGHT);
+        
+        ctx.fillStyle = `rgba(255, 0, 0, ${gameState.heartbeatIntensity})`;
+        ctx.font = '24px Georgia';
+        ctx.fillText('💓', MAP_WIDTH - 50, 40);
+      }
+
+      // Skill check
+      if (gameState.skillCheckActive) {
+        const centerX = MAP_WIDTH / 2;
+        const centerY = MAP_HEIGHT / 2;
+        
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+        ctx.fillRect(centerX - 100, centerY - 30, 200, 60);
+        
+        // Progress bar
+        ctx.fillStyle = '#333';
+        ctx.fillRect(centerX - 80, centerY - 10, 160, 20);
+        
+        // Target zone
+        const targetStart = (gameState.skillCheckTarget - 10) / 100 * 160;
+        const targetWidth = 20 / 100 * 160;
+        ctx.fillStyle = '#00ff00';
+        ctx.fillRect(centerX - 80 + targetStart, centerY - 10, targetWidth, 20);
+        
+        // Moving indicator
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(centerX - 80 + (gameState.skillCheckProgress / 100 * 160), centerY - 15, 3, 30);
+        
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '14px Georgia';
+        ctx.fillText('SKILL CHECK - Press SPACE!', centerX - 70, centerY + 35);
+      }
+    }
+
+    function drawGameOver() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+      ctx.fillRect(0, 0, MAP_WIDTH, MAP_HEIGHT);
+      
+      ctx.textAlign = 'center';
+      
+      if (gameState.won) {
+        ctx.fillStyle = '#00ff00';
+        ctx.font = '48px Georgia';
+        ctx.fillText('ESCAPED!', MAP_WIDTH / 2, MAP_HEIGHT / 2 - 20);
+        ctx.font = '24px Georgia';
+        ctx.fillText('You survived the trial!', MAP_WIDTH / 2, MAP_HEIGHT / 2 + 20);
+      } else {
+        ctx.fillStyle = '#ff0000';
+        ctx.font = '48px Georgia';
+        ctx.fillText('SACRIFICED', MAP_WIDTH / 2, MAP_HEIGHT / 2 - 20);
+        ctx.font = '24px Georgia';
+        ctx.fillText('The Entity claims another soul...', MAP_WIDTH / 2, MAP_HEIGHT / 2 + 20);
+      }
+      
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '18px Georgia';
+      ctx.fillText('Press R to restart', MAP_WIDTH / 2, MAP_HEIGHT / 2 + 60);
+      
+      ctx.textAlign = 'left';
+    }
+
+    // Game loop
+    function gameLoop() {
+      updatePlayer();
+      updateKiller();
+      updateSkillCheck();
+      
+      drawMap();
+      drawScratchMarks();
+      drawObstacles();
+      drawGenerators();
+      drawExitGate();
+      drawPlayer();
+      drawKiller();
+      drawUI();
+      
+      if (!gameState.running) {
+        drawGameOver();
+      }
+      
+      requestAnimationFrame(gameLoop);
+    }
+
+    // Start game function
+    function startGame() {
+      document.getElementById('gameOverlay').classList.add('hidden');
+      gameState.running = true;
+    }
+
+    function restartGame() {
+      // Hide overlay
+      document.getElementById('gameOverlay').classList.add('hidden');
+      
+      gameState = {
+        running: true,
+        won: false,
+        lost: false,
+        generatorsRepaired: 0,
+        generatorsNeeded: 3,
+        playerHealth: 3,
+        isSprinting: false,
+        sprintEnergy: 100,
+        terrorRadius: 200,
+        skillCheckActive: false,
+        skillCheckProgress: 0,
+        skillCheckTarget: 0,
+        skillCheckSuccess: false,
+        heartbeatIntensity: 0
+      };
+      
+      player.x = 100;
+      player.y = 300;
+      player.injured = false;
+      player.scratchMarks = [];
+      
+      killer.x = 1000;
+      killer.y = 200;
+      killer.isChasing = true;
+      killer.attackCooldown = 0;
+      killer.lastPositions = [];
+      killer.stuckCounter = 0;
+      
+      generateMap();
+    }
+
+    // Initialize game
+    generateMap();
+    gameLoop();
+  </script>
+</body>
+</html>
